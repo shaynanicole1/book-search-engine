@@ -1,8 +1,8 @@
-// Include packages needed for this application
-const inquirer = require('inquirer');
-const fs = require('fs');
+import inquirer from 'inquirer';
+import fs from 'fs';
+import generateMarkdown from './generateMarkdown.js';
 
-// Create an array of questions for user input
+// Array of questions for user input
 const questions = [
   {
     type: 'input',
@@ -52,42 +52,10 @@ const questions = [
   }
 ];
 
-// Generate README content from user responses
-function generateMarkdown(data) {
-  return `# ${data.title}
-
-## Description
-${data.description}
-
-## Installation
-\`\`\`
-${data.installation}
-\`\`\`
-
-## Usage
-${data.usage}
-
-## Contributing
-${data.contributing}
-
-## Tests
-\`\`\`
-${data.tests}
-\`\`\`
-
-## License
-This project is licensed under the ${data.license} license.
-
-## Questions
-For any questions, please contact me at [${data.email}](mailto:${data.email}).  
-GitHub: [${data.github}](https://github.com/${data.github})
-`;
-}
-
 // Function to write README file
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, generateMarkdown(data), (err) =>
-    err ? console.error(err) : console.log('✅ README.md created!')
+    err ? console.error(err) : console.log('✅ README.md created successfully!')
   );
 }
 
@@ -98,5 +66,5 @@ function init() {
   });
 }
 
-// Function call to initialize app
+// Start the app
 init();
